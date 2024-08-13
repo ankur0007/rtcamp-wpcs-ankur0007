@@ -1,0 +1,17 @@
+{
+    "env": {
+      "browser": true,
+      "jquery": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:jquery/deprecated"
+    ],
+    "plugins": [
+      "jquery"
+    ],
+    "rules": {
+      // Add any custom rules or overrides here
+    }
+  }
+  

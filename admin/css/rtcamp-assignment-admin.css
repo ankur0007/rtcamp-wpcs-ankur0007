@@ -1,0 +1,74 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+#contributors_meta_box {
+	min-height: 200px;
+}
+.rtca_contributors_meta_box {
+	position: relative;
+}
+
+.rtca_contributors_search_output {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	background: white;
+	width: 100%;
+	z-index: 1000;
+	max-height: 200px;
+	overflow: auto;
+}
+
+.rtca_contributors_search_output li, .rtca-selected-contributors li {
+	padding: 8px;
+	cursor: pointer;
+	list-style: none;
+}
+
+.rtca_contributors_search_output li:hover {
+	background-color: #f1f1f1;
+}
+
+.rtca_contributors_search_output input[type="checkbox"]{
+	vertical-align: super;
+}
+
+.rtca_contributors_search_output li a, .rtca-selected-contributors li a {
+	text-decoration: none;
+	margin: 0;
+	padding-left: 3px;
+	vertical-align: text-bottom;
+}
+.rtca_contributors_search_output img, .rtca-selected-contributors img {
+	width: 30px;
+	border-radius: 25px;
+	vertical-align: middle;
+}
+input#rtca_contributors_search_field {
+	padding: 5px;
+	width: 215px;
+	border-radius: 2px;
+}
+
+.rtca-selected-contributors .dashicons {
+	vertical-align: text-bottom;
+	margin-left: 10px;
+}
+
+.rtca_contributors_meta_box label {
+	font-size: 11px;
+	font-weight: 500;
+	line-height: 1.4;
+	text-transform: uppercase;
+	margin-bottom: calc(8px);
+	padding: 0px;
+	margin-left: 5px;
+}
+label.rtca_heading {
+	display: block;
+}

@@ -1,0 +1,28 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+.rtca-post-contributors li {
+	padding: 8px;
+	cursor: pointer;
+	list-style: none;
+}
+.rtca-post-contributors li a {
+	text-decoration: none;
+	margin: 0;
+	padding-left: 3px;
+	vertical-align: text-bottom;
+}
+.rtca-post-contributors img{
+	border-radius: 25px;
+	vertical-align: middle;
+}
+.rtca-post-contributors label{
+	cursor: pointer;
+	text-transform: capitalize;
+	margin-left: 10px;
+}
+.rtca-post-contributors ul{
+	padding: 0;
+}
