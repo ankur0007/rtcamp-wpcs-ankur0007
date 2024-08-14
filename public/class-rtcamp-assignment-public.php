@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The public-facing functionality of the plugin.
  *
@@ -56,15 +55,15 @@ class Rtcamp_Assignment_Public {
 	}
 
 	/**
-	 * post_content filter display contributors in single post front
+	 * Use the post_content filter to display contributors in the single post view on the front end.
 	 *
-	 * @param [type] $content
-	 * @return HTML
+	 * @param string $content The content of the post to which contributors will be appended.
+	 * @return string The modified content with contributors included, in HTML format.
 	 */
 	public function display_contributors( $content ) {
 
 		$html = '';
-		if ( is_single() && get_post_type() == 'post' ) {
+		if ( is_single() && 'post' === get_post_type() ) {
 
 			ob_start();
 			include 'view/display-contributors-loop.php';

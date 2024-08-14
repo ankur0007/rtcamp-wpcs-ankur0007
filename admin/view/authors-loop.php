@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Provide a admin area view for the plugin
  *
@@ -13,8 +12,8 @@
  */
 
 if ( ! empty( $authors ) ) {
-	$path = plugin_dir_path( __DIR__ ) . '/view';
+
 	foreach ( $authors as $author ) {
-		include $path . '/single-author.php';
+		include '/single-author.php';
 	}
 }

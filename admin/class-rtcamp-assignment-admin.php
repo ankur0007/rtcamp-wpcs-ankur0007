@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -55,7 +54,7 @@ class Rtcamp_Assignment_Admin {
 		$this->version     = $version;
 	}
 
-	/**
+	/** Function
 	 * endpoint_get_authors_callback function
 	 * Register REST custom endpoint get authors
 	 * NOTE - v2/users may result the authors but only who have published
@@ -70,7 +69,7 @@ class Rtcamp_Assignment_Admin {
 			array(
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'get_authors_callback' ),
-				'permission_callback' => array( $this, 'check_permissions' ), // Optional: Adjust as per your security needs
+				'permission_callback' => array( $this, 'check_permissions' ),
 			)
 		);
 
@@ -80,7 +79,7 @@ class Rtcamp_Assignment_Admin {
 			array(
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'save_contributor_callback' ),
-				'permission_callback' => array( $this, 'check_permissions' ), // Optional: Adjust as per your security needs
+				'permission_callback' => array( $this, 'check_permissions' ),
 			)
 		);
 
@@ -90,11 +89,20 @@ class Rtcamp_Assignment_Admin {
 			array(
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'get_contributors_callback' ),
-				'permission_callback' => array( $this, 'check_permissions' ), // Optional: Adjust as per your security needs
+				'permission_callback' => array( $this, 'check_permissions' ),
 			)
 		);
 	}
 
+	/**
+	 * Get Contributors.
+	 *
+	 * Retrieves a list of contributors based on the request parameters.
+	 *
+	 * @since 1.0.0
+	 * @param WP_REST_Request $request The REST request object containing request data.
+	 * @return WP_REST_Response The response object containing the contributors.
+	 */
 	public function get_contributors_callback( WP_REST_Request $request ) {
 		$results = array();
 		$post_id = intval( $request->get_param( 'post_id' ) );
@@ -114,7 +122,7 @@ class Rtcamp_Assignment_Admin {
 							'name'        => $user->display_name,
 							'avatar'      => get_avatar_url( $user->ID, array( 'size' => 30 ) ),
 							'avatar_2x'   => get_avatar_url( $user->ID, array( 'size' => 60 ) ),
-							'is_selected' => ( in_array( $user->ID, $existing_contributors ) ? true : false ),
+							'is_selected' => ( in_array( intval( $user->ID ), $existing_contributors, true ) ? true : false ),
 						);
 					}
 				}
@@ -124,9 +132,11 @@ class Rtcamp_Assignment_Admin {
 		return $results;
 	}
 	/**
-	 * Save the selected contributor
+	 * Save the selected contributor.
 	 *
-	 * @since    1.0.0
+	 * @since 1.0.0
+	 * @param WP_REST_Request $request The REST request object containing the contributor data.
+	 * @return WP_REST_Response The response object after saving the contributor.
 	 */
 	public function save_contributor_callback( WP_REST_Request $request ) {
 		$results = array();
@@ -139,10 +149,10 @@ class Rtcamp_Assignment_Admin {
 
 		if ( $user && $post ) {
 			$existing_contributors = rtca_get_contributors( $post_id );
-			if ( $action == 'add' && is_array( $existing_contributors ) && ! in_array( $user_id, $existing_contributors ) ) {
+			if ( 'add' === $action && is_array( $existing_contributors ) && ! in_array( intval( $user_id ), $existing_contributors, true ) ) {
 				$existing_contributors[] = $user_id;
-			} elseif ( $action == 'remove' && is_array( $existing_contributors ) && in_array( $user_id, $existing_contributors ) ) {
-				$key = array_search( $user_id, $existing_contributors );
+			} elseif ( 'remove' === $action && is_array( $existing_contributors ) && in_array( intval( $user_id ), $existing_contributors, true ) ) {
+				$key = array_search( $user_id, $existing_contributors, true );
 				unset( $existing_contributors[ $key ] );
 			}
 
@@ -153,7 +163,7 @@ class Rtcamp_Assignment_Admin {
 				'name'        => $user->display_name,
 				'avatar'      => get_avatar_url( $user->ID, array( 'size' => 30 ) ),
 				'avatar_2x'   => get_avatar_url( $user->ID, array( 'size' => 60 ) ),
-				'is_selected' => ( in_array( $user->ID, $existing_contributors ) ? true : false ),
+				'is_selected' => ( in_array( intval( $user->ID ), $existing_contributors, true ) ? true : false ),
 			);
 		} else {
 			$results['error'] = __( 'Invalid user or post.', 'rtca' );
@@ -163,9 +173,11 @@ class Rtcamp_Assignment_Admin {
 	}
 
 	/**
-	 * Parse the result and return
+	 * Parse the result and return.
 	 *
-	 * @since    1.0.0
+	 * @since 1.0.0
+	 * @param WP_REST_Request $request The REST request object containing the data to parse.
+	 * @return WP_REST_Response The parsed result as a response object.
 	 */
 	public function get_authors_callback( WP_REST_Request $request ) {
 		$search_term           = sanitize_text_field( $request->get_param( 'search' ) );
@@ -177,12 +189,13 @@ class Rtcamp_Assignment_Admin {
 		$results = array();
 		if ( ! empty( $authors ) ) {
 			foreach ( $authors as $author ) {
+
 				$results[] = array(
 					'id'          => $author->ID,
 					'name'        => $author->display_name,
 					'avatar'      => get_avatar_url( $author->ID, array( 'size' => 30 ) ),
 					'avatar_2x'   => get_avatar_url( $author->ID, array( 'size' => 60 ) ),
-					'is_selected' => ( in_array( $author->ID, $existing_contributors ) ? true : false ),
+					'is_selected' => ( in_array( intval( $author->ID ), $existing_contributors, true ) ? true : false ),
 				);
 			}
 		}
@@ -190,9 +203,11 @@ class Rtcamp_Assignment_Admin {
 	}
 
 	/**
-	 * Set who can access this endpoint
+	 * Set who can access this endpoint.
 	 *
-	 * @since    1.0.0
+	 * @since 1.0.0
+	 * @param WP_REST_Request $request The REST request object to check permissions against.
+	 * @return WP_REST_Response The response indicating access control.
 	 */
 	public function check_permissions( WP_REST_Request $request ) {
 		$nonce = $request->get_param( '_wpnonce' );
@@ -229,11 +244,7 @@ class Rtcamp_Assignment_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function contributors_meta_box_callback( $post ) {
-
-		// We are not using nonce for now, Contributors are saved with AJAX.
-		// Add a nonce field for security.
-		// wp_nonce_field('secure_contributors_save_data', 'contributors_meta_box_nonce');
+	public function contributors_meta_box_callback() {
 
 		include 'view/authors-meta-box-view.php';
 	}
@@ -288,7 +299,7 @@ class Rtcamp_Assignment_Admin {
 		 * class.
 		 */
 
-		// Enqueue wp-util for templating
+		// Enqueue wp-util for templating.
 		wp_enqueue_script( 'wp-util' );
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/rtcamp-assignment-admin.js', array( 'jquery' ), $this->version, false );
@@ -297,7 +308,6 @@ class Rtcamp_Assignment_Admin {
 			'RTCA_OBJECT',
 			array(
 				'postID' => get_the_ID(),
-				// 'rtca_endpoint_nonce' => wp_create_nonce( 'rtca_endpoints_nonce_action' ),
 				'nonce'  => wp_create_nonce( 'wp_rest' ),
 			)
 		);

@@ -21,7 +21,9 @@
     "yoast/phpunit-polyfills": "^1.0"
   },
   "scripts": {
-    "test": "phpunit"
+    "test": "phpunit",
+    "cs": "./vendor/bin/phpcs --standard=phpcs.xml",
+    "cbf": "./vendor/bin/phpcbf --standard=phpcs.xml"
   },
   "config": {
     "platform": {

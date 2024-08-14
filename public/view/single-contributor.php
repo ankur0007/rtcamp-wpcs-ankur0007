@@ -1,10 +1,15 @@
 <?php
-/* Single Contributor HTML */
+/**
+ * Display Single Contributor Template
+ *
+ * @link              https://profiles.wordpress.org/the-ank/
+ * @since             1.0.0
+ * @package           Rtcamp_Assignment/public/view
+ */
 
 $contributor = get_userdata( $contributor_id );
 
 if ( $contributor ) {
-	echo get_the_author_meta( 'url', $contributor->ID );
 	printf(
 		'<li id="%d">
                     <a href="%s">
@@ -12,10 +17,10 @@ if ( $contributor ) {
                         <label>%s</label>
                     </a>
                 </li>',
-		$contributor->ID,
+		esc_attr( $contributor->ID ),
 		esc_url( get_author_posts_url( $contributor_id ) ),
-		get_avatar( $contributor->ID, 50 ),       // Ensure you have the URL for the image
-		esc_attr( $contributor->display_name ),   // Use display name as alt text for the image
-		htmlspecialchars( $contributor->display_name, ENT_QUOTES, 'UTF-8' ) // Display name in label
+		get_avatar( $contributor->ID, 50 ),
+		esc_attr( $contributor->display_name ),
+		esc_html( htmlspecialchars( $contributor->display_name, ENT_QUOTES, 'UTF-8' ) )
 	);
 }

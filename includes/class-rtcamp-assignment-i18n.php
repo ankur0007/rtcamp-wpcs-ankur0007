@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define the internationalization functionality
  *
@@ -24,7 +23,7 @@
  * @subpackage Rtcamp_Assignment/includes
  * @author     Ankur Vishwakarma <ankurvishwakarma45@gmail.com>
  */
-class Rtcamp_Assignment_i18n {
+class Rtcamp_Assignment_I18n {
 
 
 

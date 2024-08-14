@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Provide a admin area view for the plugin
  *
@@ -11,6 +10,7 @@
  * @package    Rtcamp_Assignment
  * @subpackage Rtcamp_Assignment/admin/view
  */
+
 ?>
 
 <div class="rtca_contributors_meta_box">
@@ -24,8 +24,8 @@
 		<div class="rtca-selected-contributors"></div>
 
 		<div class="rtca_contributors_search">
-			<label class="rtca_heading"><?php _e( 'Add New Contributor', 'rtca' ); ?></label>
-			<input type="search" name="rtca_contributors_search_field" id="rtca_contributors_search_field" autocomplete="off" class="rtca_search" placeholder="<?php _e( 'Enter at least 3 characters', 'rtca' ); ?>">
+			<label class="rtca_heading"><?php esc_html_e( 'Add New Contributor', 'rtca' ); ?></label>
+			<input type="search" name="rtca_contributors_search_field" id="rtca_contributors_search_field" autocomplete="off" class="rtca_search" placeholder="<?php esc_html_e( 'Enter at least 3 characters', 'rtca' ); ?>">
 		</div>
 
 		<ul class="rtca_contributors_search_output">

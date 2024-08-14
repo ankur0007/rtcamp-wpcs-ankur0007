@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
@@ -87,7 +86,7 @@ class Rtcamp_Assignment {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Rtcamp_Assignment_Loader. Orchestrates the hooks of the plugin.
-	 * - Rtcamp_Assignment_i18n. Defines internationalization functionality.
+	 * - Rtcamp_Assignment_I18n. Defines internationalization functionality.
 	 * - Rtcamp_Assignment_Admin. Defines all hooks for the admin area.
 	 * - Rtcamp_Assignment_Public. Defines all hooks for the public side of the site.
 	 *
@@ -133,7 +132,7 @@ class Rtcamp_Assignment {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Rtcamp_Assignment_i18n class in order to set the domain and to register the hook
+	 * Uses the Rtcamp_Assignment_I18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -141,7 +140,7 @@ class Rtcamp_Assignment {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Rtcamp_Assignment_i18n();
+		$plugin_i18n = new Rtcamp_Assignment_I18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 	}
@@ -159,12 +158,12 @@ class Rtcamp_Assignment {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'init_meta_box' ); // Add custom meta box
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'init_meta_box' ); // Add custom meta box.
 
-		// Custom endpoint to get only authors list
+		// Custom endpoint to get only authors list.
 		$this->loader->add_action( 'rest_api_init', $plugin_admin, 'endpoint_get_authors_callback' );
 
-		// Output template in footer
+		// Output template in footer.
 		$this->loader->add_action( 'admin_footer', $plugin_admin, 'output_template' );
 	}
 

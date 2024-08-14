@@ -1,4 +1,4 @@
-# RTCamp Assignment Plugin
+# RTCamp Assignment Plugin - Metabox
 
 ## Description
 
@@ -13,7 +13,7 @@ RTCamp Assignment is a WordPress plugin that provides a metabox called "Contribu
 
 ## Installation
 
-1. Download the plugin from the [GitHub repository](https://github.com/ankur0007/rt-wpcs-ankur0007).
+1. Download the plugin from the [GitHub repository](https://github.com/ankur0007/rtcamp-wpcs-ankur0007).
 2. Upload the plugin files to the `/wp-content/plugins/rtcamp-assignment` directory, or install the plugin through the WordPress plugins screen directly.
 3. Activate the plugin through the 'Plugins' screen in WordPress.
 4. The Contributors metabox will now be available on the post editor screen.
@@ -34,7 +34,7 @@ RTCamp Assignment is a WordPress plugin that provides a metabox called "Contribu
 
 ## Demo
 
-Check out a [Live Demo](https://github.com/ankur0007/rt-wpcs-ankur0007) to see the plugin in action.
+Check out a [Live Demo](https://wpcoollogics.co.in/hello-world/) to see the plugin in action.
 
 ## Built With
 
@@ -44,7 +44,7 @@ Check out a [Live Demo](https://github.com/ankur0007/rt-wpcs-ankur0007) to see t
 
 ## Contributing
 
-If you'd like to contribute to this plugin, please feel free to submit a pull request on [GitHub](https://github.com/ankur0007/rt-wpcs-ankur0007).
+If you'd like to contribute to this plugin, please feel free to submit a pull request on [GitHub](https://github.com/ankur0007/rtcamp-wpcs-ankur0007).
 
 ## License
 
